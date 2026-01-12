@@ -46,6 +46,7 @@ O usuário seleciona um assento num mapa visual da sala e finaliza a "compra".
    ```bash
    cd "venda de ingresso.Api"
    dotnet restore
+   dotnet ef database update
    dotnet run
    ```
 
