@@ -1,0 +1,1 @@
+namespace VendaDeIngresso.Api.Models;public class Sala{    public int SalaId { get; set; }    public required string Nome { get; set; }    public int TotalLinhas { get; set; }    public int TotalColunas { get; set; }}

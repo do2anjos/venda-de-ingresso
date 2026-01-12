@@ -1,0 +1,1 @@
+namespace VendaDeIngresso.Api.Models;public class Venda{    public int VendaId { get; set; }    public int AssentoId { get; set; }    public required string UsuarioId { get; set; }    public DateTime DataVenda { get; set; }    public decimal Valor { get; set; }    public Assento Assento { get; set; } = null!;}

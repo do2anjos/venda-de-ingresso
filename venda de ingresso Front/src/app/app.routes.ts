@@ -1,0 +1,1 @@
+import { Routes } from '@angular/router';import { HomeComponent } from './pages/home/home.component';import { ReservaComponent } from './pages/reserva/reserva.component';export const routes: Routes = [    { path: '', component: HomeComponent },    { path: 'reserva', component: ReservaComponent },    { path: '**', redirectTo: '' }];

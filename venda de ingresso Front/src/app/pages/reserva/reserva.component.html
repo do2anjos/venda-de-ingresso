@@ -1,0 +1,75 @@
+<section class="container-bilheteria">
+    <header class="cabecalho-bilheteria">
+        <a routerLink="/" class="link-voltar">Voltar</a>
+        <h1 class="titulo">Selecione seus assentos</h1>
+    </header>
+
+    @if (error()) {
+    <div class="mensagem erro">{{ error() }}</div>
+    }
+    @if (successMessage()) {
+    <div class="mensagem sucesso">{{ successMessage() }}</div>
+    }
+
+    <div class="conteudo-principal">
+        <div class="area-mapa">
+            <div class="tela">
+                <span>TELA</span>
+            </div>
+
+            @if (loading()) {
+            <div class="carregando">Carregando sala...</div>
+            }
+
+            @if (!loading()) {
+            <div class="grade-sala">
+                @for (linha of rows(); track linha.letra) {
+                <div class="letra-linha">{{ linha.letra }}</div>
+                @for (assento of linha.assentos; track assento.assentoId) {
+                <button [class]="getAssentoClass(assento)" (click)="selecionarAssento(assento)"
+                    [disabled]="assento.status === 2" [title]="'Linha ' + linha.letra + ' - Assento ' + assento.coluna">
+                    {{ assento.coluna }}
+                </button>
+                }
+                }
+            </div>
+            }
+
+            <div class="legenda">
+                <div class="item-legenda">
+                    <div class="demo-assento disponivel"></div>
+                    <span>Livre</span>
+                </div>
+                <div class="item-legenda">
+                    <div class="demo-assento selecionado"></div>
+                    <span>Selecionado</span>
+                </div>
+                <div class="item-legenda">
+                    <div class="demo-assento reservado"></div>
+                    <span>Reservado</span>
+                </div>
+                <div class="item-legenda">
+                    <div class="demo-assento vendido"></div>
+                    <span>Vendido</span>
+                </div>
+            </div>
+        </div>
+
+        @if (selecionados().length > 0) {
+        <div class="painel-compra">
+            <div class="temporizador" [class.aviso]="timerSeconds() <= 30">
+                ⏱️ Tempo restante: <strong>{{ formatTimer() }}</strong>
+            </div>
+
+            <div class="info-selecionado">
+                <p><strong>{{ selecionados().length }}</strong> assento(s) selecionado(s)</p>
+                <p class="total">Total: <strong>R$ {{ totalValor().toFixed(2) }}</strong></p>
+            </div>
+
+            <button class="botao-comprar" [disabled]="!podeComprar()" (click)="finalizarCompra()">
+                FINALIZAR COMPRA
+            </button>
+        </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,1 @@
+namespace VendaDeIngresso.Api.Models;public class Reserva{    public int ReservaId { get; set; }    public int AssentoId { get; set; }    public required string UsuarioId { get; set; }    public DateTime DataReserva { get; set; }    public DateTime DataExpiracao { get; set; }}
